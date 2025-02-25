@@ -1,4 +1,6 @@
 import {Request, Response} from "express"
+
+
 import prisma from "../db/prisma.js"
 import bcrypt from "bcryptjs"
 import generateToken from "../utils/generateToken.js"
@@ -16,8 +18,8 @@ export const logout = async (req: Request, res: Response) =>{
 }
 export const login = async (req: Request, res: Response): Promise<any> =>{
     try {
-     const {username, password } = req.body;
-     const user = await prisma.user.findUnique({ where : {username }})
+     const { username, password } = req.body;
+     const user = await prisma.user.findUnique({ where : { username }})
 
      if(!user)
         {
@@ -36,7 +38,7 @@ export const login = async (req: Request, res: Response): Promise<any> =>{
         id: user.id,
         fullName :user.fullName,
         username :user.username,
-        // profile:user.profile
+        profile :user.profile
      })
     }
     catch(error: any)
@@ -78,7 +80,7 @@ export const signup = async (req: Request , res: Response): Promise<any> => {
             fullName,
             password: hashpass,
             gender,
-            // profile: gender == "male" ? boyProfilePic : girlProfilePic
+            profile: gender == "male" ? boyProfilePic : girlProfilePic
         }
     })
 
@@ -89,7 +91,7 @@ export const signup = async (req: Request , res: Response): Promise<any> => {
             id: newUser.id,
             fullName: newUser.fullName,
             username: newUser.username,
-            // profile: newUser.profile
+            profile: newUser.profile
         });
     }
     else
@@ -100,7 +102,28 @@ export const signup = async (req: Request , res: Response): Promise<any> => {
     catch(err :any)
     {
      console.log("ERROR IN SIGNUP",err.message);
-     res.status(200).json({ error: "Internal server error"})
-    } 
-};
+    }
+}
+interface users {
+    id: string | undefined
+}
+export const getme = async (req: Request, res: Response): Promise<any> =>
+{
+     try{
+        const user1 = await prisma.user.findUnique({ where: { id: req.user.id } });
+        if(!user1){
+            return res.status(404).json({ error: "User not found" });
+        }
 
+        res.status(200).json({
+            id: user1.id,
+            fullName: user1.fullName,
+            userName: user1.username,
+            profile: user1.profile
+        })
+     }
+     catch(error: any){
+        console.log("error in getMe controller", error.message);
+        return res.status(500).json({ error: "Internal server error" });
+     }
+}
