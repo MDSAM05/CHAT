@@ -8,7 +8,7 @@ function App() {
 
 
   return(
-    <div className ="h-screen bg-white bg-font-mono flex justify-center">
+    <div className ="h-screen  bg-gray-100 bg-font-mono flex justify-center">
       <Routes>
          <Route path = "" element = { <Home />} />
          <Route path = "/signup" element = {<Signup />} />

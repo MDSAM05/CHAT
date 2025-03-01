@@ -7,9 +7,9 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        beige: "#EAE7DC",
-      },
+      shadows: {
+        'red': 'rgba(255, 0, 0, 0.1)', //Red shadow (for testing puposes)
+      }
     },
   },
   plugins: [
