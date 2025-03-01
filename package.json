@@ -16,8 +16,10 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "nodemon": "^3.1.9",
+    "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",

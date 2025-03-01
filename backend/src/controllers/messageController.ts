@@ -100,7 +100,7 @@ export const getMessage = async (req: Request, res: Response): Promise<any> =>{
   }
 }
 
-export const getUsersforSidebar = async (req: Request, res: Response): Promise<any>  => {
+export const getUsersforSidebar = async (req: Request, res: Response): Promise<any>    => {
    try{
     const authUser = req.user.id;
 
