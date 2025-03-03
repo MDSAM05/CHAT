@@ -18,7 +18,7 @@ const SignUp = () => {
         setInputs({...inputs, gender})
 	}
 	
-	const {Loading, signup} = useSignup()
+	const {loading, signup} = useSignup()
 	const handleSubmit = (e: React.FormEvent) =>
 	{
        e.preventDefault();
@@ -27,8 +27,8 @@ const SignUp = () => {
 	return (
 		<div className='flex flex-col font-mono items-center justify-center min-w-96 mx-auto'>
 			<div className='w-full p-6 rounded-lg bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-				<h1 className='text-3xl  text-green-500 font-semibold text-center'>
-					SIGN UP <span className='text-green-500'> CHATAPP</span>
+				<h1 className='text-3xl text-green-500 font-semibold text-center'>
+					SIGN UP
 				</h1>
 
 				<form onSubmit={handleSubmit}>
@@ -93,9 +93,9 @@ const SignUp = () => {
 					</Link>
 
 					<div>
-						<button  disabled = {Loading} 
+						<button  disabled = {loading} 
 						className='btn btn-block text-lg bg-green-500 btn-sm mt-2 border border-green-700'>
-						{Loading ? "...Loading" : "Sign Up"}</button>
+						{loading ? "...Loading" : "Sign Up"}</button>
 					</div>
 				</form>
 			</div>
