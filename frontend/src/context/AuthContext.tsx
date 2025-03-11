@@ -31,8 +31,10 @@ export const AuthContextProvider  = ({ children} : {children: ReactNode})  =>
       const fetchuser = async () =>
       {
         try{
-           const res = await fetch("/api/auth/getme");
-
+           const res = await fetch("http://localhost:5001/auth/getme");
+           if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+        }
            const data = await res.json();
            setAuthUser(data);
         }

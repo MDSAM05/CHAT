@@ -33,7 +33,7 @@ const protectRoute = async(req: Request, res: Response, next:NextFunction) =>
 
    const user = await prisma.user.findUnique({ where: {id: decoded.userId},
      select: {id: true, username: true, fullName: true,
-    // profilePic: true
+    //  profilePic: true
    }})
    if(!user)
     {
@@ -43,7 +43,7 @@ const protectRoute = async(req: Request, res: Response, next:NextFunction) =>
     if (user) {
         req.user = { id: user.id };
     }
-    next();
+    // next();
     }
     catch(error: any)
     {
